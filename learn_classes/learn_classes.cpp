@@ -96,7 +96,7 @@ class triangle: public figure
 		{
 			if(a > b)
 			{
-				int n = a/b ;
+				int n = a/b;
 				int shift = -n, buff;
 				float procent = b*100/a;
 				int modul;
@@ -109,7 +109,7 @@ class triangle: public figure
 						if(j == x || i == y + b -1)
 							canvas[i][j] = '*';                //рисуем бока
 
-						if(n == 1)                             
+						if(n >= 1)                             
 						{
 							if(procent < 100 && procent > 80)
 								modul = a - b +  a*20/100;  
@@ -217,7 +217,7 @@ int main()
 		&triangle(3, 4)
 	};
 
-	triangle kvadrat(48,20,3,2); 
+	triangle kvadrat(45,20,3,2); 
 	
 
 	char canvas[24][80];
