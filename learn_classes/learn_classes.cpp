@@ -13,8 +13,6 @@ public:
 	virtual double area() = 0;
 };
 
-
-
 class rectangle: public figure
 {
 	public:
@@ -81,7 +79,8 @@ class square: public figure
 				for(int j = x; j < x + a; j++)
 				{
 					if(i == y || j == x || i == y + a -1 || j == x + a - 1)
-						canvas[i][j] = '*';
+						if(canvas[i][j])
+							canvas[i][j] = '*';
 				}
 			}
 			
@@ -172,10 +171,6 @@ class triangle: public figure
 					}
 				}
 			}
-			
-		
-    
-    
          
         
 			
@@ -281,7 +276,7 @@ int main()
 		for(int j = 0; j < 80; j++)
 			canvas[i][j] = ' ';
 
-	triangle kvadrat(45,18,2,2); 
+	square kvadrat(8,10,20); 
 	kvadrat.paint(canvas);
 
 
