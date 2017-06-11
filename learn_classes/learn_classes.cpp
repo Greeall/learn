@@ -57,16 +57,36 @@ class square: public figure
 {
 	public:
 		int a;
+		int x;
+		int y;
 
-		square (int side1 = 1)
+		square (int side1 = 1, int x1 =1, int y1 = 1)
 		{
 			a = side1;
+			x = x1;
+			y = y1;
 		}
 
 		double area(void)
 		{
 			return  a * a;
 		}
+
+		template <int N, int M>
+
+		void paint(char (&canvas)[N][M])
+		{
+			for(int i = y; i < y + a; i++)
+			{
+				for(int j = x; j < x + a; j++)
+				{
+					if(i == y || j == x || i == y + a -1 || j == x + a - 1)
+						canvas[i][j] = '*';
+				}
+			}
+			
+		}
+
 };
 class triangle: public figure
 {
@@ -94,88 +114,126 @@ class triangle: public figure
 
 		void paint(char (&canvas)[N][M])
 		{
-			if(a > b)
-			{
-				int n = a/b;
-				int shift = -n, buff;
-				float procent = b*100/a;
-				int modul;
+			
 
+			for(int i = y; i < y + b; i++)
+			{
+				for(int j = x; j < x + a; j++)
+				{
+					if(j == x || i == y + b -1)
+						canvas[i][j] = '*';  //рисуем катеты
+				}
+			}	
+
+			
+			/*double k = (float)b/(float)a;
+
+			for(int i = y; i < y + b; i++)
+			{
+				int x_paint = (i-y)/k + x + 0.5;   //рисуем гипотенузу
+				canvas[i][x_paint] = '*';
+				
+				}*/
+
+
+			int error = 0;
+			int deltaerr = b;
+
+
+			if(a<b)
+			{
 				for(int i = y; i < y + b; i++)
 				{
-					for(int j = x; j < x + a; j++)
+					deltaerr = a;
+					canvas[i][x] = '*';
+					error += deltaerr;
+
+					if(2*error >= a)
 					{
-
-						if(j == x || i == y + b -1)
-							canvas[i][j] = '*';                //рисуем бока
-
-						if(n >= 1)                             
-						{
-							if(procent < 100 && procent > 80)
-								modul = a - b +  a*20/100;  
-							else
-								modul = 2;
-							if(i%modul != 0)
-							{
-								buff = n;
-								if((j > x + shift && (j <= x + shift + buff) && i!= y))
-								{
-									canvas[i][j] = '*';
-								}
-							}
-							else
-							{
-								buff = n + 1;
-								if((j > x + shift && (j <= x + shift + buff) && i!= y))
-								{
-									canvas[i][j] = '*';
-								}
-							}
-
-						}
-						else
-						{
-							buff = n;
-							if((j > x + shift && (j <= x + shift + buff) && i!= y))
-								canvas[i][j] = '*';
-						}
-					
+						x += 1;
+						error -= b;
 					}
-					shift += buff;
 				}
-
 			}
-			if(a < b)
+			else
 			{
-				cout<<"aaa";
+				for (int i = x; i < x + a; i++)
+				{
+					if(x >= y + b)
+						break;
+
+					canvas[x][i] = '*';
+					error += deltaerr;
+
+					if(2*error >= a)
+					{
+						x += 1;
+						error -= a;
+					}
+				}
 			}
+			
+		
+    
+    
+         
+        
+			
 		}
-
-
-
+	
+			
 };
 class circle: public figure
 {
 	public:
-		int a;
+		int r;
+		int x;
+		int y;
 
-		circle (int radius = 1)
+		circle (int radius = 1, int x1 = 1, int y1 = 1)
 		{
-			a = radius;
+			r = radius;
+			x = x1;
+			y = y1;
 		}
 
 		double area(void)
 		{
-			return 3.14 * a * a;
+			return 3.14 * r * r;
 		}
 
-		/*static void set_radius(double r) {
-			radius = r;
-		}
+		template <int N, int M>
 
-		static double get_area() {
-			return 3.14 * radius * radius;
-		}*/
+		void paint(char (&canvas)[N][M])
+		{
+			int x1 = 0;
+			int y1 = r;
+			int delta = 1 - 2*r;
+			int error = 0;
+
+			while(y1>=0)
+			{
+				canvas[x + x1][y + y1] = '*';
+				canvas[x + x1][y - y1] = '*';
+				canvas[x - x1][y + y1] = '*';
+				canvas[x - x1][y - y1] = '*';
+				error = 2*(delta + y1) - 1;
+				if((delta < 0) && (error <= 0))
+				{
+					delta += 2* ++x1 + 1;
+					continue;
+				}
+				error = 2*(delta - x1) - 1;
+				if((delta > 0) && (error > 0))
+				{
+					delta += 1 - 2* --y1;
+					continue;
+				}
+				x1++;
+				delta += 2*(x1 - y1);
+				y1--;
+			}
+		}
 };
 
 
@@ -210,15 +268,12 @@ int learn::counter = 5;
 
 int main()
 {	
-	figure* f[] = {
-		&circle(3),
+	///figure* f[] = {
+	//	&circle(3),
 		//&rectangle(2,7),
-		&square(9),
-		&triangle(3, 4)
-	};
-
-	triangle kvadrat(45,20,3,2); 
-	
+	//	&square(9),
+	//	&triangle(3, 4)
+	//};
 
 	char canvas[24][80];
 
@@ -226,6 +281,7 @@ int main()
 		for(int j = 0; j < 80; j++)
 			canvas[i][j] = ' ';
 
+	triangle kvadrat(45,18,2,2); 
 	kvadrat.paint(canvas);
 
 
