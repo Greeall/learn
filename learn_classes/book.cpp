@@ -32,13 +32,16 @@ string book::convert_to_string()
 }
 
 
-void book::print_reader(order *all_orders)
+void book::print_reader(vector <order> all_orders)
 {
-	string unique_readers[4];
+	//string unique_readers[4];
+	vector <int>::size_type size;
+	size  = all_orders.size();
+	string *unique_readers = new string;
 	int size_of_unique_readers = 0;
 	bool is_unique_name = true;
 
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < size; i++)
 		if(all_orders[i].book_obj.name == name)
 		{
 			
@@ -51,10 +54,11 @@ void book::print_reader(order *all_orders)
 			if(is_unique_name)
 			{
 				cout<<all_orders[i].reader_obj.name;
+				unique_readers[size_of_unique_readers] = all_orders[i].reader_obj.name;
+				size_of_unique_readers ++;
 			}
 
-			unique_readers[size_of_unique_readers] = all_orders[i].reader_obj.name;
-			size_of_unique_readers ++;
+			is_unique_name = true;
 		}
 				
 

@@ -22,6 +22,7 @@ public:
 	library(book *books_k, reader *readers_k, order *orders_k);
 	static void buy_book(reader reader_b, book buying_book, vector <order> all_orders);
 	string convert_to_string();
+	static void three_most_popular_books(vector <order> all_orders);
 	
 };
 

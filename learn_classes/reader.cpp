@@ -26,9 +26,12 @@ string reader::convert_to_string()
 
 
 
-void reader::print_all_books(order *all_orders)
+void reader::print_all_books(vector <order> all_orders)
 {
-	for(int i = 0; i < 4; i++)
+	vector <int>::size_type size;
+	size  = all_orders.size();
+
+	for(int i = 0; i < size; i++)
 	{
 		if(name == all_orders[i].reader_obj.name)
 		{

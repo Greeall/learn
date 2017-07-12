@@ -6,6 +6,8 @@
 
 #include "stdafx.h"
 #include <string>
+#include "order.h"
+#include <vector>
 using namespace std;
 
 
@@ -18,8 +20,8 @@ public:
 
 	author (string nam = "1", string con = "1",  int birth = 1);
 
-	void most_popular_book();
 	string convert_to_string();
+	void most_popular_book(vector <order> all_orders);
 
 	//~author(void);
 };
