@@ -14,17 +14,6 @@ using namespace std;
 
 int main()
 {	
-
-	/*vector <book> books;
-	books.push_back(book("Omon Ra", 400, "fantastic", "Pelevin", 1992, 100));    //0
-	books.push_back(book("War and Peace", 3000, "drama", "Tolstoy", 1869, 100)); //1
-	books.push_back(book("Sonata", 210, "drama", "Tolstoy", 1889, 99));          //2
-	books.push_back(book("Empire V", 568, "fantastic", "Pelevin", 2006, 100));   //3
-	books.push_back(book("Bayazet", 568, "history", "Pikul", 1961, 100));        //4
-	books.push_back(book("Moonzund", 568, "history", "Pikul", 1970, 100));       //5
-	books.push_back(book("Cruisers", 568, "history", "Pikul", 1985, 100));       //6
-	*/
-	
 	
 	//ofstream in_library;
 	//in_library.open("books.txt");
@@ -35,6 +24,9 @@ int main()
 	//in_library<<new_line;
 	//in_library.close();
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////READING BOOKS IN LIBRARY//////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	int size; 
 	out_library>>size;    // quantity books in library
@@ -63,29 +55,76 @@ int main()
 		books.push_back(book(name_b,quantity_of_pages_b,genre_b,author_b,year_b,price_b));   
 	}
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////READING ALL LIBRARY'S READERS////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	vector <author> authors;
-	authors.push_back(author("Tolstoy", "Russian", 1828)); //0
-	authors.push_back(author("Pelevin", "Russian", 1962)); //1
-	authors.push_back(author("Pikul", "Russian", 1928));   //2
-	
+	out_library>>size;						//quantity readers
+
+	for(int i = 0; i < size; i++)			//reading readers
+		for(int j = 0; j < 3; j ++)
+			out_library>>reading[i][j];
 
 	vector <reader> readers;
-	readers.push_back(reader("Vasya", "Dnepr", 45)); //0
-	readers.push_back(reader("Kolya", "Dnepr", 40)); //1
-	readers.push_back(reader("Masha", "Dnepr", 23)); //2
-	readers.push_back(reader("Tanya", "Dnepr", 44)); //3
+	string name_r, city_r;
+	int age_r;
 
+
+	for(int i = 0; i < size; i++)         // convert information in strings to objects of reader
+	{
+		name_r = reading[i][0];
+		city_r = reading[i][1];
+		age_r = atoi(reading[i][2].c_str());
+
+		readers.push_back(reader(name_r,city_r,age_r));   
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////READING AUTHORS OF BOOKS/////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	out_library>>size;						//quantity authors
+
+	for(int i = 0; i < size; i++)			//reading authors
+		for(int j = 0; j < 3; j ++)
+			out_library>>reading[i][j];
+
+	vector <author> authors;
+	string name_a, country_a;
+	int year_of_birth_a;
+
+	for(int i = 0; i < size; i++)         // convert information in strings to objects of author
+	{
+		name_a = reading[i][0];
+		country_a = reading[i][1];
+		year_of_birth_a = atoi(reading[i][2].c_str());
+
+		authors.push_back(author(name_a,country_a,year_of_birth_a));   
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////READING LIBRARY'S ORDERS/////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	vector <order> orders;
-	orders.push_back(order(readers[3], books[1])); //0
-	orders.push_back(order(readers[1], books[0])); //1
-	orders.push_back(order(readers[1], books[3])); //2
-	orders.push_back(order(readers[0], books[0])); //3
-	orders.push_back(order(readers[2], books[5])); //4
-	orders.push_back(order(readers[0], books[2])); //5
-	orders.push_back(order(readers[3], books[6])); //6
+	out_library>>size;						//quantity orders
 
+	for(int i = 0; i < size; i++)			//reading orders
+		for(int j = 0; j < 2; j ++)
+			out_library>>reading[i][j];
+
+	vector <order> orders;
+	int reader_index;
+	int book_index;
+	
+	for(int i = 0; i < size; i++)         // convert information in strings to objects of order
+	{
+		reader_index = atoi(reading[i][0].c_str());
+		book_index = atoi(reading[i][1].c_str());
+
+		orders.push_back(order(readers[reader_index],books[book_index]));   
+	}
 
 
 	//books[1].print_reader(orders);  //understand why doesnt work
@@ -101,7 +140,6 @@ int main()
 	//library::three_most_fresh_books(books); // WORK +
 
 	//string lul = books[1].convert_to_string();  //WORK +
-	
 
 	return 0;
 }
