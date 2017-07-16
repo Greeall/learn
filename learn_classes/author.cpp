@@ -30,18 +30,18 @@ void author::most_popular_book(vector <order> all_orders)
 	vector <int>::size_type size;
 	size  = all_orders.size();
 	int size_of_unique_names = 0;
-	string *book_of_this_author = new string;
-	int *count = new int;
-	bool is_unique_name = true;
 
 	
+	string *book_of_this_author = new string [size];
+	int *count = new int [size];
+	bool is_unique_name = true;
 
 	for(int i = 0; i < size; i ++)
 	{
 		
 		if(name == all_orders[i].book_obj.authors)
 		{
-			for(int j = 0; j < size_of_unique_names + 1; j++)
+			for(int j = 0; j < size_of_unique_names ; j++)
 			{
 				if(all_orders[i].book_obj.name == book_of_this_author[j])
 				{
@@ -68,11 +68,9 @@ void author::most_popular_book(vector <order> all_orders)
 			max = count[i];
 			index_of_most_popular_book = i;
 		}
-
-	
-
-	cout << book_of_this_author[index_of_most_popular_book] << endl;
 		
-	delete book_of_this_author;
-	//delete count;  ?????? 
+	cout<<book_of_this_author[index_of_most_popular_book]<<endl;
+		
+	delete [] book_of_this_author;
+	delete [] count; 
 }

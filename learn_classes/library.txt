@@ -1,0 +1,9 @@
+7
+Omon_Ra 		400 		fantastic	Pelevin 	1992	100
+War_and_Peace		3000		drama		Tolstoy		1869	101
+Sonata			210		drama		Tolstoy		1889	99        
+Empire_V 		568 		fantastic 	Pelevin		2006 	100  
+Bayazet			568		history		Pikul		1961	100       
+Moonzund		568		history		Pikul		1970	100      
+Cruisers		568 		history		Pikul	 	1985 	100      
+

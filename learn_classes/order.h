@@ -1,7 +1,3 @@
-//#pragma once
-
-
-
 #ifndef ORDER_H
 #define ORDER_H
 
@@ -21,9 +17,6 @@ public:
 
 	order();
 	order (reader name_r, book name_b);
-
-
-	//~order(void);
 };
 
 #endif

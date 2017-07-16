@@ -23,7 +23,6 @@ public:
 	string convert_to_string();
 	void most_popular_book(vector <order> all_orders);
 
-	//~author(void);
 };
 
 #endif

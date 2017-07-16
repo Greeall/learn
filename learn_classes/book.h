@@ -30,8 +30,6 @@ public:
 	string convert_to_string();
 	void print_reader(vector <order> all_orders);
 
-	//~book(void);
-
 };
 
 #endif 

@@ -34,7 +34,6 @@ string book::convert_to_string()
 
 void book::print_reader(vector <order> all_orders)
 {
-	//string unique_readers[4];
 	vector <int>::size_type size;
 	size  = all_orders.size();
 	string *unique_readers = new string;
