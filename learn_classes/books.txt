@@ -1,2 +1,28 @@
-im your first library
-yes
+7
+Omon_Ra 400 fantastic Pelevin 1992 100
+War_and_Peace 3000 drama Tolstoy 1869 101
+Sonata 210 drama Tolstoy 1889 99
+Empire_V 568 fantastic Pelevin 2006 107
+Bayazet 568 history Pikul 1961 190
+Moonzund 568 history Pikul 1970 99
+Cruisers 568 history Pikul 1985 140
+
+4
+Vasya Dnepr 45
+Kolya Dnepr 40
+Masha Dnepr 23
+Tanya Dnepr 44
+
+3
+Tolstoy Russian 1828
+Pelevin Russian 1962
+Pikul Russian 1928
+
+7
+3 1 
+1 0 
+1 3 
+0 0 
+2 5 
+0 2 
+3 6 

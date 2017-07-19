@@ -36,7 +36,8 @@ void book::print_reader(vector <order> all_orders)
 {
 	vector <int>::size_type size;
 	size  = all_orders.size();
-	string *unique_readers = new string;
+
+	string *unique_readers = new string [size];
 	int size_of_unique_readers = 0;
 	bool is_unique_name = true;
 
@@ -52,7 +53,7 @@ void book::print_reader(vector <order> all_orders)
 
 			if(is_unique_name)
 			{
-				cout<<all_orders[i].reader_obj.name;
+				cout<<all_orders[i].reader_obj.name<<"\n";
 				unique_readers[size_of_unique_readers] = all_orders[i].reader_obj.name;
 				size_of_unique_readers ++;
 			}

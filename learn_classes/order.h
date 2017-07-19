@@ -17,6 +17,8 @@ public:
 
 	order();
 	order (reader name_r, book name_b);
+
+	string convert_to_string(vector <reader> all_readers, vector <book> all_books);
 };
 
 #endif

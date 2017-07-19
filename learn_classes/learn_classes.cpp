@@ -15,14 +15,8 @@ using namespace std;
 int main()
 {	
 	
-	//ofstream in_library;
-	//in_library.open("books.txt");
 	ifstream out_library;
 	out_library.open("library.txt");
-
-	//in_library<<name;
-	//in_library<<new_line;
-	//in_library.close();
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////READING BOOKS IN LIBRARY//////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +121,7 @@ int main()
 	}
 
 
-	//books[1].print_reader(orders);  //understand why doesnt work
+	books[1].print_reader(orders);  //understand why doesnt work
 
 	//readers[2].print_all_books(orders);  //WORK + 
 
@@ -140,6 +134,47 @@ int main()
 	//library::three_most_fresh_books(books); // WORK +
 
 	//string lul = books[1].convert_to_string();  //WORK +
+
+
+	out_library.close();
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////WRITING ALL LIBRARY IN FILE//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	ofstream in_library;
+	in_library.open("library.txt");
+
+	vector <int>::size_type quantity_books, 
+							quantity_readers,
+							quantity_authors,
+							quantity_orders;
+
+	quantity_books    = books.size();
+	quantity_readers  = readers.size();
+	quantity_authors  = authors.size();
+	quantity_orders   = orders.size();
+
+
+	in_library<<quantity_books<<"\n";
+	for(int i = 0; i < quantity_books; i++)
+		in_library<<books[i].convert_to_string();
+
+	in_library<<"\n"<<quantity_readers<<"\n";
+	for(int i = 0; i < quantity_readers; i++)
+		in_library<<readers[i].convert_to_string();
+
+	in_library<<"\n"<<quantity_authors<<"\n";
+	for(int i = 0; i < quantity_authors; i++)
+		in_library<<authors[i].convert_to_string();
+
+	in_library<<"\n"<<quantity_orders<<"\n";
+	for(int i = 0; i < quantity_orders; i++)
+		in_library<<orders[i].convert_to_string(readers, books)<<"\n";
+
+	in_library.close();
+
 
 	return 0;
 }
