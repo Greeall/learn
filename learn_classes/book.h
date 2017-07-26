@@ -14,6 +14,8 @@ using namespace std;
 class order;
 class reader;
 class author;
+class library;
+
 
 class book
 {
@@ -24,11 +26,12 @@ public:
 	string authors;
 	int year;
 	int price;
+    
 
 	book(string nam = "1", int quantity_pages = 1, string gen = "1", string autor = "1", int yea = 1, int pr = 1);
 	
 	string convert_to_string();
-	void print_reader(vector <order> all_orders);
+	void print_reader(library my_lib);
 
 };
 

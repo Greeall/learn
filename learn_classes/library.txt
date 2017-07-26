@@ -18,7 +18,7 @@ Tolstoy Russian 1828
 Pelevin Russian 1962
 Pikul Russian 1928
 
-7
+11
 3 1 
 1 0 
 1 3 
@@ -26,3 +26,7 @@ Pikul Russian 1928
 2 5 
 0 2 
 3 6 
+0 5 
+0 0 
+2 3 
+2 3 

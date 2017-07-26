@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include "author.h"
+#include "library.h"
 
 
 author::author(string nam, string con,  int birth)
@@ -24,26 +25,27 @@ string author::convert_to_string()
 }
 
 
-void author::most_popular_book(vector <order> all_orders)
+void author::most_popular_book(library my_lib)
 {
 
 	vector <int>::size_type size;
-	size  = all_orders.size();
+	size  = my_lib.orders.size();
 	int size_of_unique_names = 0;
 
 	
 	string *book_of_this_author = new string [size];
 	int *count = new int [size];
+	int *index = new int [size];
 	bool is_unique_name = true;
 
 	for(int i = 0; i < size; i ++)
 	{
 		
-		if(name == all_orders[i].book_obj.authors)
+		if(name == my_lib.orders[i].book_obj.authors)
 		{
 			for(int j = 0; j < size_of_unique_names ; j++)
 			{
-				if(all_orders[i].book_obj.name == book_of_this_author[j])
+				if(my_lib.orders[i].book_obj.name == book_of_this_author[j])
 				{
 					is_unique_name = false;
 					count[j]++;
@@ -52,8 +54,9 @@ void author::most_popular_book(vector <order> all_orders)
 
 			if(is_unique_name)
 			{
-				book_of_this_author[size_of_unique_names] = all_orders[i].book_obj.name;
+				book_of_this_author[size_of_unique_names] = my_lib.orders[i].book_obj.name;
 				count[size_of_unique_names] = 1;
+				index[size_of_unique_names] = i;
 				size_of_unique_names ++;
 			}
 
@@ -66,10 +69,11 @@ void author::most_popular_book(vector <order> all_orders)
 		if(count[i] > max)
 		{
 			max = count[i];
-			index_of_most_popular_book = i;
+			index_of_most_popular_book = index[i];
 		}
 		
-	cout<<book_of_this_author[index_of_most_popular_book]<<endl;
+	cout<<my_lib.books[index_of_most_popular_book].convert_to_string()<<endl;
+
 		
 	delete [] book_of_this_author;
 	delete [] count; 

@@ -5,6 +5,7 @@
 #include "reader.h"
 #include "order.h"
 #include "book.h"
+#include "library.h"
 
 
 reader::reader (string name_r, string city_r, int age_r)
@@ -26,16 +27,16 @@ string reader::convert_to_string()
 
 
 
-void reader::print_all_books(vector <order> all_orders)
+void reader::print_all_books(library my_lib)
 {
 	vector <int>::size_type size;
-	size  = all_orders.size();
+	size  = my_lib.orders.size();
 
 	for(int i = 0; i < size; i++)
 	{
-		if(name == all_orders[i].reader_obj.name)
+		if(name == my_lib.orders[i].reader_obj.name)
 		{
-			cout<<all_orders[i].book_obj.name<<endl;
+			cout<<my_lib.orders[i].book_obj.convert_to_string()<<endl;
 		}
 	}
 }

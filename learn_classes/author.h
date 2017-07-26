@@ -10,6 +10,7 @@
 #include <vector>
 using namespace std;
 
+class library;
 
 class author
 {
@@ -21,7 +22,7 @@ public:
 	author (string nam = "1", string con = "1",  int birth = 1);
 
 	string convert_to_string();
-	void most_popular_book(vector <order> all_orders);
+	void most_popular_book(library my_lib);
 
 };
 

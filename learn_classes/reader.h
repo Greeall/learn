@@ -11,6 +11,7 @@
 using namespace std;
 
 class order;
+class library;
 
 class reader
 {
@@ -23,7 +24,7 @@ public:
 	reader (string name_r = "1", string city_r = "1", int age_r = 1);
 	
 	string convert_to_string();
-	void print_all_books(vector <order> all_orders);
+	void print_all_books(library my_lib);
 	
 };
 

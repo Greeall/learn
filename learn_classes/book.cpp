@@ -5,6 +5,7 @@
 #include "book.h"
 #include "reader.h"
 #include "order.h"
+#include "library.h"
 #include <string>
 
  book::book(string nam, int quantity_pages, string gen, string autor, int yea, int pr)
@@ -32,29 +33,30 @@ string book::convert_to_string()
 }
 
 
-void book::print_reader(vector <order> all_orders)
+void book::print_reader(library my_lib)
 {
 	vector <int>::size_type size;
-	size  = all_orders.size();
+	size  = my_lib.orders.size();
+	
 
 	string *unique_readers = new string [size];
 	int size_of_unique_readers = 0;
 	bool is_unique_name = true;
 
 	for(int i = 0; i < size; i++)
-		if(all_orders[i].book_obj.name == name)
+		if(my_lib.orders[i].book_obj.name == name)
 		{
 			
 			for(int j = 0; j <= size_of_unique_readers + 1; j++)
 			{
-				if(all_orders[i].reader_obj.name == unique_readers[j])
+				if(my_lib.orders[i].reader_obj.name == unique_readers[j])
 					is_unique_name = false;
 			}
 
 			if(is_unique_name)
 			{
-				cout<<all_orders[i].reader_obj.name<<"\n";
-				unique_readers[size_of_unique_readers] = all_orders[i].reader_obj.name;
+				cout<<my_lib.orders[i].reader_obj.convert_to_string()<<"\n";
+				unique_readers[size_of_unique_readers] = my_lib.orders[i].reader_obj.name;
 				size_of_unique_readers ++;
 			}
 
