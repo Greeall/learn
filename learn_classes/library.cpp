@@ -124,7 +124,6 @@ vector <order> library::buy_book(reader reader_b, book buying_book)
 	cout<<"New order was creating: \n "<<reader_b.convert_to_string()<<" bought \n "
 		<<buying_book.convert_to_string()<<endl;
 	return orders;
-	
 }
 
 void library::three_most_popular_books(library my_lib)
